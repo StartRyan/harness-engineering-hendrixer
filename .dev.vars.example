@@ -1,10 +1,15 @@
 # Copy to .dev.vars and fill in. The server loads these via dotenv.
 #
-# OPENAI_API_KEY  — required from Lesson 1.
-# DATABASE_URL    — required from Lesson 2 (durable execution). Use a free
-#                   Postgres database, e.g. an instant one from neon.new.
-#                   Use the DIRECT connection string (not the -pooler host):
-#                   DBOS needs session features that PgBouncer poolers break.
+# ANTHROPIC_API_KEY  — your Aixcoder relay key, required from Lesson 1.
+# ANTHROPIC_BASE_URL — the Aixcoder Anthropic-compatible API root. The local
+#                      relay used in this workshop is http://127.0.0.1:32123/v1.
+# ANTHROPIC_MODEL    — a model id exposed by that relay (e.g. claude-opus-5).
+# DATABASE_URL       — required from Lesson 2 (durable execution). Use a free
+#                      Postgres database, e.g. an instant one from neon.new.
+#                      Use the DIRECT connection string (not the -pooler host):
+#                      DBOS needs session features that PgBouncer poolers break.
 
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
 DATABASE_URL=postgresql://user:password@host/db?sslmode=require

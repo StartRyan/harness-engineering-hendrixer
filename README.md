@@ -59,12 +59,15 @@ npm install
 
 ### 2. Configure environment variables
 
-Copy `.dev.vars.example` to `.dev.vars` and fill in your keys. An OpenAI API key is required from
-Lesson 1; **Lesson 2 (durable execution) adds a Postgres database** — grab a free instant one from
+Copy `.dev.vars.example` to `.dev.vars` and configure the Aixcoder relay. It exposes an
+Anthropic-compatible Messages API; the workshop default is `claude-opus-5`. **Lesson 2
+(durable execution) adds a Postgres database** — grab a free instant one from
 [neon.new](https://neon.new) and use its **direct** connection string (not the `-pooler` host).
 
 ```
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
 DATABASE_URL=postgresql://user:password@host/db?sslmode=require   # Lesson 2+
 ```
 
@@ -91,7 +94,7 @@ You build the real (brittle) agent loop in Lesson 1.
 
 - **Runtime:** Node.js + TypeScript, run with `tsx` (no build step for the server).
 - **Server:** Express + `ws` — hosts the harness and streams its event log to the browser over one WebSocket.
-- **LLM:** OpenAI (GPT-5.5) via the Vercel AI SDK (server-side only; the harness owns the transport).
+- **LLM:** Claude Opus 5 via the Aixcoder Anthropic-compatible relay and Vercel AI SDK (server-side only; the harness owns the transport).
 - **UI:** Vite + React, styled with prompt-kit (shadcn/ui + Tailwind). The inspector renders the harness event stream; **students don't build the UI.**
 - **Notes:** VitePress.
 - Libraries for durable execution, sandboxing, and state are introduced per lesson.

@@ -478,7 +478,7 @@ config({ path: ".dev.vars" });
 ```diff
 @@ -1,55 +1,74 @@
 -import { config } from "dotenv";
--// Load secrets from .dev.vars (OPENAI_API_KEY, ...) before anything else.
+-// Load secrets from .dev.vars (ANTHROPIC_API_KEY, ...) before anything else.
 -config({ path: ".dev.vars" });
 +// MUST be first: loads .dev.vars before any module that reads env at load time.
 +import "./env";
