@@ -274,7 +274,7 @@ Walk through the loop:
 
 ### Run it
 
-You'll need an API key. Copy `.dev.vars.example` to `.dev.vars` and set `OPENAI_API_KEY`.
+You'll need the Aixcoder relay settings. Copy `.dev.vars.example` to `.dev.vars` and set `ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL`, and `ANTHROPIC_MODEL`.
 Then `npm run dev`, open the inspector, and paste the sample task:
 
 ```
