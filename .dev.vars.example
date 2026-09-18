@@ -1,5 +1,6 @@
 # Copy to .dev.vars and fill in. The server loads these via dotenv.
-# An LLM provider key is the only hard requirement; individual lessons note
-# any extra services they need.
-
-OPENAI_API_KEY=sk-...
+# Required for model calls after implementing the Lesson 1 agent loop.
+# The Anthropic provider appends /messages to this API root.
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5

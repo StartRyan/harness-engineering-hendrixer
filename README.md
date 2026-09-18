@@ -60,12 +60,19 @@ npm install
 
 ### 2. Configure environment variables
 
-Copy `.dev.vars.example` to `.dev.vars` and fill in your keys. An OpenAI API key is the only
-hard requirement; individual lessons note any extra services they need.
+Copy `.dev.vars.example` to `.dev.vars` and fill in your Aixcoder relay settings:
 
 ```
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
 ```
+
+The Vercel AI SDK's Anthropic provider appends `/messages` to the API root above.
+The local relay must be running for model calls after you implement the Lesson 1 loop;
+the starter stub does not call the model or require PostgreSQL. Later lessons introduce
+additional services. Existing process environment variables take precedence over `.dev.vars`.
+Keep real keys only in your local, ignored `.dev.vars`, never in Git.
 
 ### 3. Run things
 
@@ -90,7 +97,7 @@ You build the real (brittle) agent loop in Lesson 1.
 
 - **Runtime:** Node.js + TypeScript, run with `tsx` (no build step for the server).
 - **Server:** Express + `ws` — hosts the harness and streams its event log to the browser over one WebSocket.
-- **LLM:** OpenAI (GPT-5.5) via the Vercel AI SDK (server-side only; the harness owns the transport).
+- **LLM:** Aixcoder's Anthropic-compatible relay (`claude-opus-5` in the example configuration) via the Vercel AI SDK (server-side only; the harness owns the transport).
 - **UI:** Vite + React, styled with prompt-kit (shadcn/ui + Tailwind). The inspector renders the harness event stream; **students don't build the UI.**
 - **Notes:** VitePress.
 - Libraries for durable execution, sandboxing, and state are introduced per lesson.

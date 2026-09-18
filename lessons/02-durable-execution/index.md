@@ -461,8 +461,9 @@ instead of re-running the step.
 
 ### 5. `server/env.ts`: load `.dev.vars` before anything reads it
 
-`harness/db.ts` reads `DATABASE_URL` at import time, and ES module imports run *before* top-level
-statements. So put the dotenv call in its own module and import it first.
+`server/env.ts` already loads the model configuration before imports in Lesson 1.
+Keep it imported first: `harness/db.ts` now also reads `DATABASE_URL` at import time,
+and ES module imports run *before* top-level statements.
 
 ```ts
 import { config } from "dotenv";
@@ -476,12 +477,9 @@ config({ path: ".dev.vars" });
 ### 6. `server/index.ts`: DBOS lifecycle + the durable bus
 
 ```diff
-@@ -1,55 +1,74 @@
--import { config } from "dotenv";
--// Load secrets from .dev.vars (OPENAI_API_KEY, ...) before anything else.
--config({ path: ".dev.vars" });
-+// MUST be first: loads .dev.vars before any module that reads env at load time.
-+import "./env";
+@@ -1,54 +1,74 @@
+ // MUST be first: loads .dev.vars before any module that reads env at load time.
+ import "./env";
  
 +import { DBOS } from "@dbos-inc/dbos-sdk";
  import express from "express";

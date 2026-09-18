@@ -1,6 +1,5 @@
-import { config } from "dotenv";
-// Load secrets from .dev.vars (OPENAI_API_KEY, ...) before anything else.
-config({ path: ".dev.vars" });
+// MUST be first: loads .dev.vars before any module that reads env at load time.
+import "./env";
 
 import express from "express";
 import { createServer } from "node:http";
