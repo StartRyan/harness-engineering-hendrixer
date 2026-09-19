@@ -1,5 +1,7 @@
 # Copy to .dev.vars and fill in. The server loads these via dotenv.
-# An LLM provider key is the only hard requirement; individual lessons note
+# All three Anthropic settings are required; individual lessons note
 # any extra services they need.
 
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-api-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
