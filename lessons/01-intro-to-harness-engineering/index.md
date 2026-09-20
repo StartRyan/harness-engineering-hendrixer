@@ -274,7 +274,9 @@ Walk through the loop:
 
 ### Run it
 
-You'll need an API key. Copy `.dev.vars.example` to `.dev.vars` and set `OPENAI_API_KEY`.
+You'll need the Aixcoder relay running for model calls. Copy `.dev.vars.example` to `.dev.vars`
+and set `ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL` (`http://127.0.0.1:32123/v1`), and
+`ANTHROPIC_MODEL` (`claude-opus-5`). The Anthropic provider appends `/messages` to the base URL.
 Then `npm run dev`, open the inspector, and paste the sample task:
 
 ```

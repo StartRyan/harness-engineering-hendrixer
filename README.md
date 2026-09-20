@@ -60,14 +60,20 @@ npm install
 
 ### 2. Configure environment variables
 
-Copy `.dev.vars.example` to `.dev.vars` and fill in your keys. An OpenAI API key is required from
-Lesson 1; **Lesson 2 (durable execution) adds a Postgres database** — grab a free instant one from
-[neon.new](https://neon.new) and use its **direct** connection string (not the `-pooler` host).
+Copy `.dev.vars.example` to `.dev.vars` and fill in your keys. The Aixcoder relay settings are
+required from Lesson 1; **Lesson 2 (durable execution) adds a Postgres database** — grab a free
+instant one from [neon.new](https://neon.new) and use its **direct** connection string (not the
+`-pooler` host).
 
 ```
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
 DATABASE_URL=postgresql://user:password@host/db?sslmode=require   # Lesson 2+
 ```
+
+The Vercel AI SDK's Anthropic provider appends `/messages` to the base URL above, and the relay
+must be running locally for model calls. Keep real keys only in your ignored `.dev.vars`.
 
 ### 3. Run things
 
@@ -92,7 +98,7 @@ You build the real (brittle) agent loop in Lesson 1.
 
 - **Runtime:** Node.js + TypeScript, run with `tsx` (no build step for the server).
 - **Server:** Express + `ws` — hosts the harness and streams its event log to the browser over one WebSocket.
-- **LLM:** OpenAI (GPT-5.5) via the Vercel AI SDK (server-side only; the harness owns the transport).
+- **LLM:** Aixcoder's Anthropic-compatible relay (`claude-opus-5` in the example config) via the Vercel AI SDK (server-side only; the harness owns the transport).
 - **UI:** Vite + React, styled with prompt-kit (shadcn/ui + Tailwind). The inspector renders the harness event stream; **students don't build the UI.**
 - **Notes:** VitePress.
 - Libraries for durable execution, sandboxing, and state are introduced per lesson.

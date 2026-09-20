@@ -1,10 +1,14 @@
 # Copy to .dev.vars and fill in. The server loads these via dotenv.
 #
-# OPENAI_API_KEY  — required from Lesson 1.
+# ANTHROPIC_*     — required from Lesson 1. This project talks to the local
+#                   Aixcoder relay, which exposes the Anthropic Messages API.
+#                   The provider appends /messages to the base URL below.
 # DATABASE_URL    — required from Lesson 2 (durable execution). Use a free
 #                   Postgres database, e.g. an instant one from neon.new.
 #                   Use the DIRECT connection string (not the -pooler host):
 #                   DBOS needs session features that PgBouncer poolers break.
 
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=your-aixcoder-relay-key
+ANTHROPIC_BASE_URL=http://127.0.0.1:32123/v1
+ANTHROPIC_MODEL=claude-opus-5
 DATABASE_URL=postgresql://user:password@host/db?sslmode=require

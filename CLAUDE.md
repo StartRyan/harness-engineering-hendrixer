@@ -47,7 +47,7 @@ about any real product.
 ## Tech Stack
 
 - **Runtime:** Node.js + TypeScript (run with `tsx`, no build step).
-- **LLM provider:** OpenAI via the Vercel AI SDK (default model `gpt-5.5`).
+- **LLM provider:** Aixcoder's Anthropic-compatible relay via the Vercel AI SDK (`@ai-sdk/anthropic`; example model `claude-opus-5`).
 - **Libraries:** Minimal and chosen per lesson (e.g. an isolation primitive in L3, a store in
   L2/L4). Do not lock these in prematurely. We build the concepts from scratch and *name* the
   production tools (Temporal/Inngest, e2b/Firecracker, LangGraph/Mastra) rather than depend on them.
@@ -71,7 +71,7 @@ shared/
   events.ts     AgentEvent union — the contract between harness and UI (grows each lesson)
 harness/        the runtime — accretes one module per lesson
   runtime.ts    the spine (runAgent → runWorkflow / start / resume / suspend). STUB in the starter.
-  model.ts      the AI SDK OpenAI model (gpt-5.5 default)
+  model.ts      the AI SDK Anthropic-compatible model (configured via ANTHROPIC_MODEL)
   tools.ts      safe + dangerous tool definitions                      — L1+
   state.ts      StateStore (checkpoint/load)                            — L2
   policies.ts   ToolPolicy (beforeToolCall)                            — L3
